@@ -1,0 +1,21 @@
+data_dir: "data/raw"
+output_model_path: "models/best_model.pt"
+
+categories:
+  - lifestyle
+  - academic
+  - bar
+
+training:
+  batch_size: 16
+  num_epochs: 5
+  learning_rate: 0.0003
+  weight_decay: 0.0001
+  val_split: 0.2
+  # Use 0 workers to avoid torch_shm_manager / shared-memory issues on macOS
+  num_workers: 0
+  image_size: 224
+
+random_seed: 42
+
+

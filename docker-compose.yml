@@ -1,0 +1,33 @@
+services:
+  backend:
+    build: .
+    container_name: image-classifier-backend
+    command: >
+      python -m uvicorn app.main:app
+      --host 0.0.0.0
+      --port 8000
+    ports:
+      - "8000:8000"
+    # If you want to mount local code/models for dev, uncomment:
+    # volumes:
+    #   - .:/app
+
+  frontend:
+    build: .
+    container_name: image-classifier-frontend
+    command: >
+      streamlit run frontend/app.py
+      --server.port=8501
+      --server.address=0.0.0.0
+    environment:
+      # Inside Docker, backend is reachable by service name "backend"
+      - API_URL=http://backend:8000/predict
+    depends_on:
+      - backend
+    ports:
+      # Host port 8502 -> container port 8501 to avoid clashes with any local Streamlit
+      - "8502:8501"
+    # volumes:
+    #   - .:/app
+
+

@@ -126,3 +126,4 @@ This opens a web app in your browser where you can upload one or many images and
   - Host the Streamlit app or build a custom React frontend
 
 You can ask the assistant to customize any part of this stack (e.g. different framework, different model, or integration with an existing system).
+
